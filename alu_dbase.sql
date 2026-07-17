@@ -126,4 +126,19 @@ WHERE classroom_id = 5;
 SELECT * FROM Classroom
 WHERE capacity > 20;
 
+--Yom: Extra_Curricular_Activities
+
+UPDATE Extra_Curricular_Activities
+SET meeting_day = 'Saturday'
+WHERE activity_id = 3;
+
+DELETE FROM Extra_Curricular_Activities
+WHERE activity_id = 4;
+
+SELECT * FROM Extra_Curricular_Activities
+WHERE activity_type = 'Academic';
+
+SELECT * FROM Extra_Curricular_Activities;
+
 -- =========================================================
+
