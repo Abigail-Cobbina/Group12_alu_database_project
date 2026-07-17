@@ -101,35 +101,16 @@ VALUES
 (5, 'Kofi Boateng', 'kboateng@alu.edu', 4, '2024-01-15'),
 (6, 'Tendai Moyo', 'tmoyo@alu.edu', 2, '2024-09-02');
 
--- =========================================================
--- INDIVIDUAL UPDATE / DELETE / SELECT (labeled by member)
--- =========================================================
 
--- Abigail: Faculty
+-- Yom: Extra_Curricular_Activities
 
-UPDATE Faculty
-SET department = 'Software Engineering'
-WHERE faculty_id = 1;
-
-DELETE FROM Faculty
-WHERE faculty_id = 5;
-
-SELECT * FROM Faculty
-WHERE department = 'Mathematics';
-
-
--- Arnold: Students
-
-UPDATE Students
-SET classroom_id = 3
-WHERE student_id = 1;
-
-DELETE FROM Students
-WHERE student_id = 6;
-
-SELECT * FROM Students
-WHERE enrollment_date = '2023-09-04';
-
+INSERT INTO Extra_Curricular_Activities (activity_id, activity_name, activity_type, meeting_day, advisor_id)
+VALUES
+(1, 'Chess Club', 'Academic', 'Monday', 1),
+(2, 'Debate Team', 'Academic', 'Wednesday', 2),
+(3, 'Soccer Club', 'Sports', 'Tuesday', 3),
+(4, 'Drama Society', 'Arts', 'Thursday', 4),
+(5, 'Robotics Club', 'STEM', 'Friday', 1);
 
 -- =========================================================
 -- GROUP TASKS: JOIN QUERIES + AGGREGATE QUERY
