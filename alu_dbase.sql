@@ -141,6 +141,8 @@ WHERE activity_id = 4;
 SELECT * FROM Extra_Curricular_Activities
 WHERE activity_type = 'Academic';
 
+SELECT * FROM Extra_Curricular_Activities;
+
 
 -- =========================================================
 -- GROUP TASKS: JOIN QUERIES + AGGREGATE QUERY
