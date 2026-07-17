@@ -220,3 +220,67 @@ WHERE student_id = 1;
 -- =========================================================
 -- GROUP TASKS: JOIN QUERIES + AGGREGATE QUERY
 -- =========================================================
+-- -----------------------------
+-- Normalization check
+-- -----------------------------
+-- Our schema is in 3rd Normal Form. Each table stores only attributes
+-- that describe its own entity (e.g. Faculty holds faculty details,
+-- Classroom holds room details) with no repeating groups or fields
+-- that depend on anything other than the primary key. Relationships
+-- between entities are handled through foreign keys (e.g. Courses
+-- references Faculty and Classroom) rather than duplicating data
+-- across tables. The many-to-many relationships -- students to
+-- courses, and students to activities -- are correctly resolved using
+-- junction tables (Student_Courses and Student_Activities) instead of
+-- storing repeating or comma-separated values inside the Students
+-- table, which avoids duplication and keeps each enrollment or
+-- activity membership as its own row.
+
+-- -----------------------------
+-- JOIN 1: Student enrolled in a course, taught by faculty, in a classroom
+-- -----------------------------
+SELECT
+    s.name         AS student_name,
+    c.course_name  AS course_name,
+    f.name         AS faculty_name,
+    cl.room_number AS room_number,
+    cl.building    AS building
+FROM Student_Courses sc
+JOIN Students s   ON sc.student_id  = s.student_id
+JOIN Courses c    ON sc.course_id   = c.course_id
+JOIN Faculty f    ON c.faculty_id   = f.faculty_id
+JOIN Classroom cl ON c.classroom_id = cl.classroom_id;
+
+-- -----------------------------
+-- JOIN 2: Student participates in an activity, advised by faculty
+-- -----------------------------
+SELECT
+    s.name          AS student_name,
+    a.activity_name AS activity_name,
+    f.name          AS advisor_name
+FROM Student_Activities sa
+JOIN Students s                    ON sa.student_id  = s.student_id
+JOIN Extra_Curricular_Activities a ON sa.activity_id = a.activity_id
+JOIN Faculty f                     ON a.advisor_id   = f.faculty_id;
+
+-- -----------------------------
+-- JOIN 3: Each student's home classroom, building, and room type
+-- -----------------------------
+SELECT
+    s.name         AS student_name,
+    cl.room_number AS room_number,
+    cl.building    AS building,
+    cl.room_type   AS room_type
+FROM Students s
+JOIN Classroom cl ON s.classroom_id = cl.classroom_id;
+
+-- -----------------------------
+-- AGGREGATE QUERY: number of students enrolled per course
+-- -----------------------------
+SELECT
+    c.course_name,
+    COUNT(sc.student_id) AS total_students
+FROM Courses c
+LEFT JOIN Student_Courses sc ON c.course_id = sc.course_id
+GROUP BY c.course_id, c.course_name
+ORDER BY total_students DESC;
