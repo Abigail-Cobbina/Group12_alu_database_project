@@ -102,6 +102,16 @@ VALUES
 (5, 'Kofi Boateng', 'kboateng@alu.edu', 4, '2024-01-15'),
 (6, 'Tendai Moyo', 'tmoyo@alu.edu', 2, '2024-09-02');
 
+-- Acquah: Courses
+INSERT INTO Courses (course_id, course_name, credits, faculty_id, classroom_id)
+VALUES
+(1, 'Introduction to Databases', 3, 1, 2),
+(2, 'Calculus I', 4, 2, 1),
+(3, 'Business Fundamentals', 3, 3, 3),
+(4, 'Engineering Design', 4, 4, 3),
+(5, 'Physics for Engineers', 3, 6, 4),
+(6, 'Introduction to Philosophy', 2, 3, 4);
+
 -- Yom: Extra_Curricular_Activities
 INSERT INTO Extra_Curricular_Activities (activity_id, activity_name, activity_type, meeting_day, advisor_id)
 VALUES
