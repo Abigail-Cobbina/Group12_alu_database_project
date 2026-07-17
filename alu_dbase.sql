@@ -46,7 +46,15 @@ CREATE TABLE Students (
 );
 
 -- Acquah: Courses
--- (Acquah's CREATE TABLE goes here)
+CREATE TABLE Courses (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(100) NOT NULL,
+    credits INT,
+    faculty_id INT,
+    classroom_id INT,
+    FOREIGN KEY (faculty_id) REFERENCES Faculty(faculty_id),
+    FOREIGN KEY (classroom_id) REFERENCES Classroom(classroom_id)
+);
 
 -- Yom: Extra_Curricular_Activities
 CREATE TABLE Extra_Curricular_Activities (
