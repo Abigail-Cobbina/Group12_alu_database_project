@@ -179,6 +179,17 @@ WHERE faculty_id = 5;
 SELECT * FROM Faculty
 WHERE department = 'Mathematics';
 
+-- Arnold: Students
+UPDATE Students
+SET classroom_id = 3
+WHERE student_id = 1;
+
+DELETE FROM Students
+WHERE student_id = 6;
+
+SELECT * FROM Students
+WHERE enrollment_date = '2023-09-04';
+
 -- Yom: Extra_Curricular_Activities
 UPDATE Extra_Curricular_Activities
 SET meeting_day = 'Saturday'
