@@ -28,13 +28,6 @@ CREATE TABLE Classroom (
     room_type VARCHAR(30)
 );
 
-INSERT INTO Classroom (classroom_id, room_number, building, capacity, room_type) VALUES
-(1, '101', 'Main Block', 30, 'Lecture Hall'),
-(2, '102', 'Main Block', 25, 'Lab'),
-(3, '201', 'Science Wing', 40, 'Lecture Hall'),
-(4, '202', 'Science Wing', 15, 'Seminar Room'),
-(5, '301', 'Arts Building', 20, 'Studio');
-
 -- Abigail: Faculty
 
 CREATE TABLE Faculty (
@@ -78,6 +71,15 @@ CREATE TABLE Extra_Curricular_Activities (
 -- INSERT STATEMENTS
 -- =========================================================
 
+-- Wezzie: Classroom
+
+INSERT INTO Classroom (classroom_id, room_number, building, capacity, room_type) VALUES
+(1, '101', 'Main Block', 30, 'Lecture Hall'),
+(2, '102', 'Main Block', 25, 'Lab'),
+(3, '201', 'Science Wing', 40, 'Lecture Hall'),
+(4, '202', 'Science Wing', 15, 'Seminar Room'),
+(5, '301', 'Arts Building', 20, 'Studio');
+
 -- Abigail: Faculty
 
 INSERT INTO Faculty (faculty_id, name, email, department)
@@ -113,9 +115,10 @@ VALUES
 (5, 'Robotics Club', 'STEM', 'Friday', 1);
 
 -- =========================================================
--- GROUP TASKS: JOIN QUERIES + AGGREGATE QUERY
--- Wezzie: Classroom
+-- INDIVIDUAL UPDATE / DELETE / SELECT (labeled by member)
+-- =========================================================
 
+-- Wezzie: Classroom
 UPDATE Classroom
 SET capacity = 35
 WHERE classroom_id = 1;
@@ -125,5 +128,22 @@ WHERE classroom_id = 5;
 
 SELECT * FROM Classroom
 WHERE capacity > 20;
+
+
+-- Abigail: Faculty
+UPDATE Faculty
+SET department = 'Software Engineering'
+WHERE faculty_id = 1;
+
+DELETE FROM Faculty
+WHERE faculty_id = 5;
+
+SELECT * FROM Faculty
+WHERE department = 'Mathematics';
+
+
+-- =========================================================
+-- GROUP TASKS: JOIN QUERIES + AGGREGATE QUERY
+
 
 -- =========================================================
