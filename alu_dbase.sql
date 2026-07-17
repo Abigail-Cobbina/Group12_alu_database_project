@@ -67,8 +67,23 @@ CREATE TABLE Extra_Curricular_Activities (
 );
 
 -- Michael: Student_Courses, Student_Activities (junction tables)
--- (Michael's CREATE TABLE statements go here)
+CREATE TABLE Student_Courses (
+    student_id      INT NOT NULL,
+    course_id       INT NOT NULL,
+    enrollment_date DATE,
+    PRIMARY KEY (student_id, course_id),
+    FOREIGN KEY (student_id) REFERENCES Students(student_id),
+    FOREIGN KEY (course_id) REFERENCES Courses(course_id)
+);
 
+CREATE TABLE Student_Activities (
+    student_id  INT NOT NULL,
+    activity_id INT NOT NULL,
+    join_date   DATE,
+    PRIMARY KEY (student_id, activity_id),
+    FOREIGN KEY (student_id) REFERENCES Students(student_id),
+    FOREIGN KEY (activity_id) REFERENCES Extra_Curricular_Activities(activity_id)
+);
 
 -- =========================================================
 -- INSERT STATEMENTS
@@ -121,6 +136,22 @@ VALUES
 (4, 'Drama Society', 'Arts', 'Thursday', 4),
 (5, 'Robotics Club', 'STEM', 'Friday', 1);
 
+--Micheal:student_course,Student_Activities
+INSERT INTO Student_Courses (student_id, course_id, enrollment_date) VALUES
+(1, 1, '2023-09-04'),
+(1, 2, '2023-09-04'),
+(2, 1, '2023-09-04'),
+(3, 3, '2024-01-15'),
+(4, 4, '2023-09-04'),
+(5, 5, '2024-01-15');
+
+INSERT INTO Student_Activities (student_id, activity_id, join_date) VALUES
+(1, 1, '2023-09-10'),
+(2, 2, '2023-09-10'),
+(3, 3, '2024-01-20'),
+(4, 4, '2023-09-10'),
+(5, 5, '2024-01-20');
+
 
 -- =========================================================
 -- INDIVIDUAL UPDATE / DELETE / SELECT (labeled by member)
@@ -171,6 +202,20 @@ WHERE course_id = 6;
 
 SELECT * FROM Courses
 WHERE credits >= 4;
+
+--Micheal: Student_Course,Student_Activitie
+-- UPDATE: change a student's enrollment date in a course
+UPDATE Student_Courses
+SET enrollment_date = '2023-09-05'
+WHERE student_id = 2 AND course_id = 1;
+
+-- DELETE: remove a student's activity membership
+DELETE FROM Student_Activities
+WHERE student_id = 4 AND activity_id = 4;
+
+-- SELECT with WHERE: find all courses a specific student is enrolled in
+SELECT * FROM Student_Courses
+WHERE student_id = 1;
 
 -- =========================================================
 -- GROUP TASKS: JOIN QUERIES + AGGREGATE QUERY
