@@ -161,6 +161,16 @@ WHERE activity_type = 'Academic';
 
 SELECT * FROM Extra_Curricular_Activities;
 
+-- Acquah: Courses
+UPDATE Courses
+SET credits = 4
+WHERE course_id = 1;
+
+DELETE FROM Courses
+WHERE course_id = 6;
+
+SELECT * FROM Courses
+WHERE credits >= 4;
 
 -- =========================================================
 -- GROUP TASKS: JOIN QUERIES + AGGREGATE QUERY
