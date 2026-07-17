@@ -19,7 +19,6 @@ USE alu_dbase;
 -- =========================================================
 
 -- Wezzie: Classroom
-
 CREATE TABLE Classroom (
     classroom_id INT PRIMARY KEY,
     room_number VARCHAR(20) NOT NULL,
@@ -29,7 +28,6 @@ CREATE TABLE Classroom (
 );
 
 -- Abigail: Faculty
-
 CREATE TABLE Faculty (
     faculty_id INT PRIMARY KEY,
     name VARCHAR(100),
@@ -38,7 +36,6 @@ CREATE TABLE Faculty (
 );
 
 -- Arnold: Students
-
 CREATE TABLE Students (
     student_id INT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -52,7 +49,6 @@ CREATE TABLE Students (
 -- (Acquah's CREATE TABLE goes here)
 
 -- Yom: Extra_Curricular_Activities
-
 CREATE TABLE Extra_Curricular_Activities (
     activity_id INT PRIMARY KEY,
     activity_name VARCHAR(100) NOT NULL,
@@ -61,7 +57,6 @@ CREATE TABLE Extra_Curricular_Activities (
     advisor_id INT,
     FOREIGN KEY (advisor_id) REFERENCES Faculty(faculty_id)
 );
-
 
 -- Michael: Student_Courses, Student_Activities (junction tables)
 -- (Michael's CREATE TABLE statements go here)
@@ -72,7 +67,6 @@ CREATE TABLE Extra_Curricular_Activities (
 -- =========================================================
 
 -- Wezzie: Classroom
-
 INSERT INTO Classroom (classroom_id, room_number, building, capacity, room_type) VALUES
 (1, '101', 'Main Block', 30, 'Lecture Hall'),
 (2, '102', 'Main Block', 25, 'Lab'),
@@ -81,7 +75,6 @@ INSERT INTO Classroom (classroom_id, room_number, building, capacity, room_type)
 (5, '301', 'Arts Building', 20, 'Studio');
 
 -- Abigail: Faculty
-
 INSERT INTO Faculty (faculty_id, name, email, department)
 VALUES
 (1, 'Dr. Kwame Mensah', 'kmensah@alu.edu', 'Computer Science'),
@@ -91,9 +84,7 @@ VALUES
 (5, 'Ms. Emily Carter', 'ecarter@alu.edu', 'Health Sciences'),
 (6, 'Dr. Samuel Tetteh', 'stetteh@alu.edu', 'Physics');
 
-
 -- Arnold: Students
-
 INSERT INTO Students (student_id, name, email, classroom_id, enrollment_date)
 VALUES
 (1, 'Aline Uwase', 'auwase@alu.edu', 1, '2023-09-04'),
@@ -103,9 +94,7 @@ VALUES
 (5, 'Kofi Boateng', 'kboateng@alu.edu', 4, '2024-01-15'),
 (6, 'Tendai Moyo', 'tmoyo@alu.edu', 2, '2024-09-02');
 
-
 -- Yom: Extra_Curricular_Activities
-
 INSERT INTO Extra_Curricular_Activities (activity_id, activity_name, activity_type, meeting_day, advisor_id)
 VALUES
 (1, 'Chess Club', 'Academic', 'Monday', 1),
@@ -113,6 +102,7 @@ VALUES
 (3, 'Soccer Club', 'Sports', 'Tuesday', 3),
 (4, 'Drama Society', 'Arts', 'Thursday', 4),
 (5, 'Robotics Club', 'STEM', 'Friday', 1);
+
 
 -- =========================================================
 -- INDIVIDUAL UPDATE / DELETE / SELECT (labeled by member)
@@ -129,7 +119,6 @@ WHERE classroom_id = 5;
 SELECT * FROM Classroom
 WHERE capacity > 20;
 
-
 -- Abigail: Faculty
 UPDATE Faculty
 SET department = 'Software Engineering'
@@ -141,9 +130,18 @@ WHERE faculty_id = 5;
 SELECT * FROM Faculty
 WHERE department = 'Mathematics';
 
+-- Yom: Extra_Curricular_Activities
+UPDATE Extra_Curricular_Activities
+SET meeting_day = 'Saturday'
+WHERE activity_id = 3;
+
+DELETE FROM Extra_Curricular_Activities
+WHERE activity_id = 4;
+
+SELECT * FROM Extra_Curricular_Activities
+WHERE activity_type = 'Academic';
+
 
 -- =========================================================
 -- GROUP TASKS: JOIN QUERIES + AGGREGATE QUERY
-
-
 -- =========================================================
