@@ -59,7 +59,16 @@ CREATE TABLE Students (
 -- (Acquah's CREATE TABLE goes here)
 
 -- Yom: Extra_Curricular_Activities
--- (Yom's CREATE TABLE goes here)
+
+CREATE TABLE Extra_Curricular_Activities (
+    activity_id INT PRIMARY KEY,
+    activity_name VARCHAR(100) NOT NULL,
+    activity_type VARCHAR(50),
+    meeting_day VARCHAR(20),
+    advisor_id INT,
+    FOREIGN KEY (advisor_id) REFERENCES Faculty(faculty_id)
+);
+
 
 -- Michael: Student_Courses, Student_Activities (junction tables)
 -- (Michael's CREATE TABLE statements go here)
