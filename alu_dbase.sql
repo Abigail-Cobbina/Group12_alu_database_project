@@ -45,7 +45,15 @@ CREATE TABLE Faculty (
 );
 
 -- Arnold: Students
--- (Arnold's CREATE TABLE goes here)
+
+CREATE TABLE Students (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
+    classroom_id INT,
+    enrollment_date DATE,
+    FOREIGN KEY (classroom_id) REFERENCES Classroom(classroom_id)
+);
 
 -- Acquah: Courses
 -- (Acquah's CREATE TABLE goes here)
@@ -72,6 +80,18 @@ VALUES
 (5, 'Ms. Emily Carter', 'ecarter@alu.edu', 'Health Sciences'),
 (6, 'Dr. Samuel Tetteh', 'stetteh@alu.edu', 'Physics');
 
+
+-- Arnold: Students
+
+INSERT INTO Students (student_id, name, email, classroom_id, enrollment_date)
+VALUES
+(1, 'Aline Uwase', 'auwase@alu.edu', 1, '2023-09-04'),
+(2, 'Brian Otieno', 'botieno@alu.edu', 2, '2023-09-04'),
+(3, 'Fatima Diallo', 'fdiallo@alu.edu', 3, '2024-01-15'),
+(4, 'Chiamaka Okafor', 'cokafor@alu.edu', 1, '2023-09-04'),
+(5, 'Kofi Boateng', 'kboateng@alu.edu', 4, '2024-01-15'),
+(6, 'Tendai Moyo', 'tmoyo@alu.edu', 2, '2024-09-02');
+
 -- =========================================================
 -- INDIVIDUAL UPDATE / DELETE / SELECT (labeled by member)
 -- =========================================================
@@ -87,6 +107,20 @@ WHERE faculty_id = 5;
 
 SELECT * FROM Faculty
 WHERE department = 'Mathematics';
+
+
+-- Arnold: Students
+
+UPDATE Students
+SET classroom_id = 3
+WHERE student_id = 1;
+
+DELETE FROM Students
+WHERE student_id = 6;
+
+SELECT * FROM Students
+WHERE enrollment_date = '2023-09-04';
+
 
 -- =========================================================
 -- GROUP TASKS: JOIN QUERIES + AGGREGATE QUERY
