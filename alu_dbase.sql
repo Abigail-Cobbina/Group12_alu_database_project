@@ -19,7 +19,14 @@ USE alu_dbase;
 -- =========================================================
 
 -- Wezzie: Classroom
--- (Wezzie's CREATE TABLE goes here)
+
+CREATE TABLE Classroom (
+    classroom_id INT PRIMARY KEY,
+    room_number VARCHAR(20) NOT NULL,
+    building VARCHAR(50),
+    capacity INT,
+    room_type VARCHAR(30)
+);
 
 -- Abigail: Faculty
 
